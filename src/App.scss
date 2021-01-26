@@ -1,0 +1,11 @@
+@import 'styles/app';
+
+.App {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: var(--theme-page-background);
+  color: var(--theme-page-text);
+}
