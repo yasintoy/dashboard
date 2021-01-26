@@ -1,11 +1,9 @@
-@import 'styles/app';
+@import 'styles/index';
+@import 'styles/_variables';
 
-.App {
+.app {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  background: var(--theme-page-background);
-  color: var(--theme-page-text);
 }
