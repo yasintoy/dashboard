@@ -4,15 +4,24 @@ import './styles.scss';
 
 const Card: React.FC = () => {
   const [isEditIconShown, setIsEditIconShown] = useState(false);
-  const [isEditMenuShown, setisEditMenuShown] = useState(false);
+  const [isEditMenuShown, setIsEditMenuShown] = useState(false);
 
   const handleEditIconToggle = (event: React.MouseEvent) => {
     setIsEditIconShown(!isEditIconShown);
   };
 
   const handleEditMenuToggle = () => {
-    setisEditMenuShown(!isEditMenuShown);
+    setIsEditMenuShown(!isEditMenuShown);
   };
+
+  const renderCardMenu = () => (
+    <div className="menu-toggle">
+      <button type="button">Test</button>
+      <button type="button">Test</button>
+      <button type="button">Test</button>
+      <button type="button">Test</button>
+    </div>
+  );
 
   return (
     <div
@@ -35,7 +44,7 @@ const Card: React.FC = () => {
           ) : (
             ''
           )}
-          {isEditMenuShown ? <div className="menu-toggle">deneme</div> : ''}
+          {isEditMenuShown ? renderCardMenu() : ''}
         </div>
         <div className="card_content">
           <div className="card_title">

@@ -46,6 +46,12 @@ img {
   vertical-align: middle;
 }
 
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  width: 75px;
+}
+
 .card_content {
   padding: 1rem;
   background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
