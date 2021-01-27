@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Header from './components/Header';
+import CardList from './components/CardList';
 import Constants from './constants';
 import './App.scss';
 
@@ -27,16 +28,8 @@ const App: React.FC = () => {
   return (
     <>
       <Header />
-      <div className="app">
-        <header className="app-header">
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <button type="button" onClick={handleThemeChange}>
-            change
-          </button>
-        </header>
-      </div>
+
+      <CardList />
     </>
   );
 };
