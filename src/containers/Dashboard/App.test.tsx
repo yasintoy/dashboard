@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import App from './App';
+import Dashboard from './index';
 
 test('renders learn react link', () => {
-  render(<App />);
+  render(<Dashboard />);
   const linkElement = screen.getByText(/save to reload/i);
   expect(linkElement).toBeInTheDocument();
 });

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-import Header from './components/Header';
-import CardList from './components/CardList';
-import Constants from './constants';
+import Header from '../../components/Header';
+import CardList from '../../components/CardList';
+import Constants from '../../constants';
 import './App.scss';
 
-const App: React.FC = () => {
+const Dashboard: React.FC = () => {
   const [themeState, setThemeState] = useState(true);
 
   const handleThemeChange = () => {
@@ -28,10 +28,9 @@ const App: React.FC = () => {
   return (
     <>
       <Header />
-
       <CardList />
     </>
   );
 };
 
-export default App;
+export default Dashboard;
