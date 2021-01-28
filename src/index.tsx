@@ -1,12 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { render } from 'react-dom';
 
+import configureStore from './store/configureStore';
 import Dashboard from './containers/Dashboard';
+
 import './styles/index.scss';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Dashboard />
-  </React.StrictMode>,
-  document.getElementById('root')
+const store = configureStore();
+const rootElement = document.getElementById('root');
+
+render(
+  <Provider store={store}>
+    <React.StrictMode>
+      <Dashboard />
+    </React.StrictMode>
+  </Provider>,
+  rootElement
 );

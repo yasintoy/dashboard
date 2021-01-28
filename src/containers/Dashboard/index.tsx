@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 
+import { getCampaigns } from '../../actionCreators/campaigns';
 import Header from '../../components/Header';
 import CardList from '../../components/CardList';
 import Constants from '../../constants';
 import './App.scss';
+import { CampaignsAction } from '../../actionTypes/campaigns';
 
-const Dashboard: React.FC = () => {
+interface Props {
+  onSearch(): void;
+}
+
+const Dashboard: React.FC<Props> = (props) => {
   const [themeState, setThemeState] = useState(true);
+  props.onSearch();
 
   const handleThemeChange = () => {
     setThemeState(!themeState);
@@ -33,4 +42,10 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+const mapDispatchToProps = (dispatch: Dispatch<CampaignsAction>) => ({
+  onSearch: () => {
+    dispatch(getCampaigns());
+  },
+});
+
+export default connect(null, mapDispatchToProps)(Dashboard);
