@@ -9,7 +9,8 @@ import { CardsAction } from '../../actionTypes/cards';
 import Header from '../../components/Header';
 import CardList from '../../components/CardList';
 import Constants from '../../constants';
-import './App.scss';
+
+import './styles.scss';
 
 interface Props {
   getCampaigns(): void;
@@ -18,8 +19,22 @@ interface Props {
 
 const Dashboard: React.FC<Props> = (props) => {
   const [themeState, setThemeState] = useState(true);
+  const [width, setWidth] = useState<number>(window.innerWidth);
   props.getCampaigns();
   props.getCards();
+
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile: boolean = width <= 768;
 
   const handleThemeChange = () => {
     setThemeState(!themeState);
@@ -40,7 +55,7 @@ const Dashboard: React.FC<Props> = (props) => {
 
   return (
     <>
-      <Header />
+      <Header isMobile={isMobile} />
       <CardList />
     </>
   );

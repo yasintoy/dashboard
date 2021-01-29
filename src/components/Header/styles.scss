@@ -6,8 +6,13 @@ nav {
   align-items: center;
 }
 
+.campaigns-select {
+  width: 200px;
+}
+
 .nav-campaigns-select {
-  display: inline-block;
+  display: flex;
+  align-items: center;
 }
 
 .nav-links {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import EditOutlined from '@ant-design/icons';
 
 import './styles.scss';
 
@@ -39,7 +40,7 @@ const Card: React.FC = () => {
               role="button"
               tabIndex={0}
             >
-              Edit
+              <EditOutlined color="red" />
             </span>
           ) : (
             ''
