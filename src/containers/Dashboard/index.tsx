@@ -3,19 +3,23 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
 import { getCampaigns } from '../../actionCreators/campaigns';
+import { getCards } from '../../actionCreators/cards';
+import { CampaignsAction } from '../../actionTypes/campaigns';
+import { CardsAction } from '../../actionTypes/cards';
 import Header from '../../components/Header';
 import CardList from '../../components/CardList';
 import Constants from '../../constants';
 import './App.scss';
-import { CampaignsAction } from '../../actionTypes/campaigns';
 
 interface Props {
-  onSearch(): void;
+  getCampaigns(): void;
+  getCards(): void;
 }
 
 const Dashboard: React.FC<Props> = (props) => {
   const [themeState, setThemeState] = useState(true);
-  props.onSearch();
+  props.getCampaigns();
+  props.getCards();
 
   const handleThemeChange = () => {
     setThemeState(!themeState);
@@ -42,9 +46,12 @@ const Dashboard: React.FC<Props> = (props) => {
   );
 };
 
-const mapDispatchToProps = (dispatch: Dispatch<CampaignsAction>) => ({
-  onSearch: () => {
+const mapDispatchToProps = (dispatch) => ({
+  getCampaigns: () => {
     dispatch(getCampaigns());
+  },
+  getCards: () => {
+    dispatch(getCards());
   },
 });
 

@@ -1,6 +1,5 @@
 import { put, call, takeEvery, all, fork } from 'redux-saga/effects';
 
-// import { fetchLyrics } from '../services/lyricsServices';
 import * as actionCreators from '../actionCreators/campaigns';
 import * as actionTypes from '../actionTypes/campaigns';
 import { Campaign } from '../actionTypes/campaigns';
@@ -8,7 +7,7 @@ import { Campaign } from '../actionTypes/campaigns';
 function* onLoadCampaigns() {
   try {
     yield put(actionCreators.getCampaignsRequest());
-    // const { data } = yield call(fetchLyrics);
+    // const { data } = yield call(fetchCampaigns);
     const data : Campaign[] = [
       {
         'id': 'CN201701182',
@@ -53,7 +52,7 @@ function* onLoadCampaigns() {
     ];
     yield put(actionCreators.getCampaignsSuccess(data));
   } catch (error) {
-    yield put(actionCreators.getCampaignsFailure('error'));
+    yield put(actionCreators.getCampaignsFailure(error));
   }
 }
 
