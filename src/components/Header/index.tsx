@@ -7,20 +7,20 @@ import {
 } from '@ant-design/icons';
 import Select from 'react-select';
 
-import './styles.scss';
+import { Campaign } from '../../actionTypes/campaigns';
 
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
-];
+import './styles.scss';
 
 export interface Props {
   isMobile: boolean;
+  campaigns: Array<Campaign>;
 }
 
-const Header: React.FC<Props> = ({ isMobile }) => {
-  const [selectedCampaign, setSelectedCampaign] = useState(null);
+const Header: React.FC<Props> = ({ isMobile, campaigns }) => {
+  const [selectedCampaign, setSelectedCampaign] = useState<object>({
+    value: null,
+    label: 'All Campaigns',
+  });
 
   return (
     <nav className="nav">
@@ -28,7 +28,10 @@ const Header: React.FC<Props> = ({ isMobile }) => {
         <Select
           defaultValue={selectedCampaign}
           onChange={setSelectedCampaign}
-          options={options}
+          options={campaigns.map((campaign) => ({
+            value: campaign.id,
+            label: campaign.campaignName,
+          }))}
           menuPlacement="auto"
           menuPosition="fixed"
           className="campaigns-select"

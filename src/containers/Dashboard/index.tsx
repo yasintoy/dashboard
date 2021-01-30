@@ -1,73 +1,72 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
+import { connect, useDispatch } from 'react-redux';
 
 import { getCampaigns } from '../../actionCreators/campaigns';
 import { getCards } from '../../actionCreators/cards';
-import { CampaignsAction } from '../../actionTypes/campaigns';
-import { CardsAction } from '../../actionTypes/cards';
+import { Campaign } from '../../actionTypes/campaigns';
+import { Card } from '../../actionTypes/cards';
 import Header from '../../components/Header';
 import CardList from '../../components/CardList';
 import Constants from '../../constants';
+import { AppState } from '../../reducers/rootReducer';
 
 import './styles.scss';
 
 interface Props {
-  getCampaigns(): void;
-  getCards(): void;
+  campaigns: Campaign[];
+  cards: Card[];
 }
 
-const Dashboard: React.FC<Props> = (props) => {
-  const [themeState, setThemeState] = useState(true);
+const Dashboard: React.FC<Props> = ({ campaigns, cards }) => {
+  const [themeState, setThemeState] = useState<string>('light');
   const [width, setWidth] = useState<number>(window.innerWidth);
-  props.getCampaigns();
-  props.getCards();
+  const dispatch = useDispatch();
+  const isMobile: boolean = width <= 768;
 
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
   }
 
   useEffect(() => {
+    dispatch(getCampaigns());
+    dispatch(getCards());
     window.addEventListener('resize', handleWindowSizeChange);
     return () => {
       window.removeEventListener('resize', handleWindowSizeChange);
     };
   }, []);
 
-  const isMobile: boolean = width <= 768;
-
   const handleThemeChange = () => {
-    setThemeState(!themeState);
-    if (themeState) {
+    if (themeState === 'light') {
       localStorage.setItem('Theme', Constants.DARK_MODE);
+      setThemeState('dark');
       document.body.classList.add('dark-mode');
     } else {
       localStorage.setItem('Theme', Constants.LIGHT_MODE);
+      setThemeState('light');
       document.body.classList.remove('dark-mode');
     }
   };
 
   useEffect(() => {
-    const getTheme = localStorage.getItem('Theme');
-    if (getTheme === Constants.DARK_MODE)
+    const localTheme = localStorage.getItem('Theme');
+    if (localTheme === Constants.DARK_MODE)
       return document.body.classList.add('dark-mode');
   }, []);
 
   return (
-    <>
-      <Header isMobile={isMobile} />
-      <CardList />
-    </>
+    <div className="container">
+      <Header campaigns={campaigns} isMobile={isMobile} />
+      <CardList cards={cards} />
+    </div>
   );
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  getCampaigns: () => {
-    dispatch(getCampaigns());
-  },
-  getCards: () => {
-    dispatch(getCards());
-  },
-});
+const mapStateToProps = (state: AppState) => {
+  return {
+    campaigns: state.campaigns.campaigns,
+    cards: state.cards.cards,
+  };
+};
 
-export default connect(null, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, null)(Dashboard);

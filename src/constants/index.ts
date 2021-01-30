@@ -10,6 +10,12 @@ const Constants = {
     'declined',
     'terminated',
   ],
+  WORK_FLOWS: {
+    saved: ['pending'],
+    pending: ['active', 'declined'],
+    active: ['paused', 'terminated', 'expired'],
+    paused: ['active'],
+  },
 };
 
 export default Constants;

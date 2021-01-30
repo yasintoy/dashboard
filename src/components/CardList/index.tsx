@@ -1,18 +1,26 @@
 import React from 'react';
 
+import { Card as ICard } from '../../actionTypes/cards';
 import Card from '../Card';
+import CreateCard from '../CreateCard';
+
 import './styles.scss';
 
-const CardList: React.FC = () => (
-  <div className="main">
-    <div className="cards">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+export interface Props {
+  cards: ICard[];
+}
+
+const CardList: React.FC<Props> = ({ cards }) => {
+  return (
+    <div className="main">
+      <div className="cards">
+        {cards.map((card) => (
+          <Card key={card.id} card={card} />
+        ))}
+        <CreateCard />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default CardList;

@@ -4,7 +4,7 @@ import * as actionCreators from '../actionCreators/cards';
 import * as actionTypes from '../actionTypes/cards';
 import { Card } from '../actionTypes/cards';
 
-function* onLoadCards() {
+function* onLoadCards({ campaignId }: actionTypes.GetCardsAction) {
   try {
     yield put(actionCreators.getCardsRequest());
     // const { data } = yield call(fetchCards);
@@ -14,6 +14,13 @@ function* onLoadCards() {
         campaignId: '2',
         cardDescription: 'description',
         cardTitle: 'title',
+        primaryMediaUrl: 'https://loremflickr.com/750/400',
+        currentWorkflow: 'paused',
+        listOfPlans: [
+          {
+            price: { amount: '47800', currency: 'JPY', currencySymbol: '¥' },
+          },
+        ],
       },
     ];
     yield put(actionCreators.getCardsSuccess(data));

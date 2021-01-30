@@ -9,7 +9,9 @@ const rootReducer = combineReducers({
   campaigns: campaignsReducer,
   cards: cardsReducer,
   isLoading: isLoadingReducer,
-  error: errorReducer
+  error: errorReducer,
 });
+
+export type AppState = ReturnType<typeof rootReducer>;
 
 export default rootReducer;

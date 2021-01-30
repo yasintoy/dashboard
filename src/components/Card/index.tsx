@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
 import EditOutlined from '@ant-design/icons';
+import Select from 'react-select';
+
+import { Card as ICard } from '../../actionTypes/cards';
 
 import './styles.scss';
+import Constants from '../../constants';
 
-const Card: React.FC = () => {
+export interface Props {
+  card: ICard;
+}
+
+const Card: React.FC<Props> = ({ card }) => {
   const [isEditIconShown, setIsEditIconShown] = useState(false);
   const [isEditMenuShown, setIsEditMenuShown] = useState(false);
 
@@ -32,7 +40,7 @@ const Card: React.FC = () => {
     >
       <div className="card">
         <div className="card_image">
-          <img src="https://picsum.photos/500/300/?image=10" />
+          <img src={card.primaryMediaUrl} />
           {isEditIconShown ? (
             <span
               onClick={handleEditMenuToggle}
@@ -40,7 +48,8 @@ const Card: React.FC = () => {
               role="button"
               tabIndex={0}
             >
-              <EditOutlined color="red" />
+              {/* <EditOutlined color="red" /> */}
+              edit
             </span>
           ) : (
             ''
@@ -49,11 +58,30 @@ const Card: React.FC = () => {
         </div>
         <div className="card_content">
           <div className="card_title">
-            <h2>Card Grid Layout</h2>
+            <h2>{card.cardDescription}</h2>
           </div>
           <div className="card_text">
-            <div className="budget">$ 5000 / Month</div>
-            <div className="status">Saved</div>
+            <div className="budget">
+              {card.listOfPlans[0].price.currencySymbol}{' '}
+              {card.listOfPlans[0].price.amount} / Month
+            </div>
+            <div className="status">
+              <Select
+                defaultValue={{
+                  value: card.id,
+                  label: card.currentWorkflow,
+                }}
+                onChange={() => {}}
+                options={Constants.WORK_FLOWS[card.currentWorkflow].map(
+                  (label) => ({
+                    value: card.id,
+                    label,
+                  })
+                )}
+                menuPlacement="auto"
+                menuPosition="fixed"
+              />
+            </div>
           </div>
           <div className="progress-bar" />
         </div>

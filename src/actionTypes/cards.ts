@@ -1,9 +1,11 @@
-
 export interface Card {
   id: string;
   campaignId: string;
   cardDescription: string;
   cardTitle: string;
+  primaryMediaUrl: string;
+  currentWorkflow: string;
+  listOfPlans: object;
 }
 
 export const SET_CARDS = 'cardsActionTypes/SET_CARDS';
@@ -15,6 +17,7 @@ export interface SetCardsAction {
 export const GET_CARDS = 'cardsActionTypes/GET_CARDS';
 export interface GetCardsAction {
   type: typeof GET_CARDS;
+  campaignId?: string;
 }
 
 export const GET_CARDS_REQUEST = 'cardsActionTypes/GET_CARDS_REQUEST';
