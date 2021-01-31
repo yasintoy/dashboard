@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import DarkModeToggle from 'react-dark-mode-toggle';
-import { LoadingOutlined } from '@ant-design/icons';
 
 import { getCampaigns } from '../../actionCreators/campaigns';
 import { getCards, updateCard } from '../../actionCreators/cards';

@@ -39,6 +39,7 @@ const Card: React.FC<Props> = ({ card, handleCardUpdate, id }) => {
 
   const handleStatusChange = (event, changedCard) => {
     // I'd like to create a confirm modal component but dont have enough time :/
+    // eslint-disable-next-line no-alert
     if (window.confirm('Are you sure you wish to change status this card?')) {
       handleCardUpdate(event.value, changedCard.cardTitle, event.label);
     }
@@ -73,7 +74,10 @@ const Card: React.FC<Props> = ({ card, handleCardUpdate, id }) => {
     >
       <div className="card">
         <div className="card_image">
-          <img src={`${card.primaryMediaUrl}?random=${card.cardTitle}`} />
+          <img
+            alt=""
+            src={`${card.primaryMediaUrl}?random=${card.cardTitle}`}
+          />
           {isEditIconShown ? (
             <div
               className="card_image_icon"

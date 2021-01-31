@@ -3,13 +3,13 @@
 This application demonstrates the React, TypeScript, Redux and Redux-Saga based dashboard having list of services cards
 
 ## Table of Contents
-- [Technologies Used](#Technologies Used)
+- [Technologies Used](#Technologies)
 - [Installation](#installation)
 - [Getting Started](#getting-started)
-- [Features](#features)
+- [Screenshots](#screenshots)
 - [TODO](#todo)
 
-# Technologies Used:
+# Technologies:
 
 - React, TypeScript, Redux-Saga, HTML5, SCSS.
 - Plugins/Libraries:
@@ -71,7 +71,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
      ![image](screen-shots/redux.png)
      Instead of writing isLoading and isError into both campaigns and cards state,
      I've created a generics file errorReducer.ts and isLoadingReducer.ts <br>
-     It gives you check state by using action type
+     You can check state by using action type
      `isCampaignLoading: state.isLoading[GET_CAMPAIGNS]`
 - sagas/ : 
     - redux-saga files for middleware
@@ -82,3 +82,22 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
  - styles/:
     - global styles.scss(dark-mode etc.) and variable.scss (colors etc.)
     
+## Screenshots
+
+All cards without any campaign id filter
+![image](screen-shots/all-cards.png)
+
+Change card's status. I've added a `delay(5000)` into saga middleware to show loading spinner 
+![image](screen-shots/currentWorkflow.png)
+
+Pop-up a modal to confirm card status changing. `Note:` because of time issues I've used window.confirm in here. 
+In the real project, I could create a modal and use it.
+![image](screen-shots/confirm.png)
+
+Mobile version (Iphone 5). There're some css minor issues. If I've a chance, I'll fix it ASP
+![image](screen-shots/mobile.png)
+
+Dark Mode in mobile version. `Note:` I'm using react-select for card's status dropdown. 
+It's custom css feature is not efficient so it takes time.
+ I'll change the background color on the dark mode
+![image](screen-shots/mobile-dark.png)
