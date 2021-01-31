@@ -38,7 +38,7 @@ const Dashboard: React.FC<Props> = ({
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [width, setWidth] = useState<number>(window.innerWidth);
   const dispatch = useDispatch();
-  const isMobile: boolean = width <= 768;
+  const isMobile: boolean = width <= 600;
 
   const handleWindowSizeChange = () => {
     setWidth(window.innerWidth);
@@ -98,6 +98,7 @@ const Dashboard: React.FC<Props> = ({
         <Loading />
       ) : (
         <CardList
+          isMobile={isMobile}
           handleCardUpdate={handleCardUpdate}
           isCardUpdateLoading={isCardUpdateLoading}
           cards={cards}

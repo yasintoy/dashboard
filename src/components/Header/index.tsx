@@ -1,5 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { BarsOutlined, SearchOutlined } from '@ant-design/icons';
+import React, { useState } from 'react';
+import {
+  BarsOutlined,
+  SearchOutlined,
+  CalendarOutlined,
+} from '@ant-design/icons';
 
 import Select from 'react-select';
 
@@ -51,9 +55,9 @@ const Header: React.FC<Props> = ({
           className="campaigns_select"
         />
 
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div className="nav_campaigns_select_pending">
           <BarsOutlined style={{ fontSize: '24px', paddingLeft: '12px' }} />
-          <span style={{ paddingLeft: '2px' }}>Pending</span>
+          <span>Pending</span>
         </div>
       </div>
       {!isMobile ? (
@@ -62,7 +66,9 @@ const Header: React.FC<Props> = ({
             <SearchOutlined style={{ fontSize: '24px' }} />
           </li>
           <li className="nav_item">
-            <a href="#">Today, Jun 16th</a>
+            <a href="#">
+              {'<'} <CalendarOutlined /> Today, Jun {new Date().getDate()} {'>'}
+            </a>
           </li>
           <li className="nav_item">
             <a href="#">1d</a>

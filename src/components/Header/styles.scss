@@ -19,11 +19,26 @@ nav {
   @media (max-width: 768px) {
     margin: 0 auto;
   }
+
+  &_pending {
+    display: flex;
+    align-items: center;
+
+    span {
+      padding-left: 2px;
+    }
+  }
 }
+
 
 .nav_links {
   display: flex;
+  align-items: center;
   list-style: none;
+
+  a {
+    color: var(--color-red);
+  }
 }
 
 .nav_item a {

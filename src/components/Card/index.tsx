@@ -1,4 +1,13 @@
 import React, { useState } from 'react';
+import {
+  LikeOutlined,
+  TeamOutlined,
+  EyeOutlined,
+  EditOutlined,
+  CheckCircleOutlined,
+  DeleteOutlined,
+  ShareAltOutlined,
+} from '@ant-design/icons';
 import Select from 'react-select';
 
 import { Card as ICard } from '../../actionTypes/cards';
@@ -38,11 +47,21 @@ const Card: React.FC<Props> = ({ card, handleCardUpdate, id }) => {
   const renderCardMenu = () => (
     <div className="menu_toggle">
       <button type="button">
-        <span>Test</span>
+        <EditOutlined />
+        <span>Edit</span>
       </button>
-      <button type="button">Test</button>
-      <button type="button">Test</button>
-      <button type="button">Test</button>
+      <button type="button">
+        <CheckCircleOutlined />
+        <span>Publis</span>
+      </button>
+      <button type="button">
+        <ShareAltOutlined />
+        <span>Share</span>
+      </button>
+      <button type="button">
+        <DeleteOutlined />
+        <span>Delete</span>
+      </button>
     </div>
   );
 
@@ -56,15 +75,15 @@ const Card: React.FC<Props> = ({ card, handleCardUpdate, id }) => {
         <div className="card_image">
           <img src={`${card.primaryMediaUrl}?random=${card.cardTitle}`} />
           {isEditIconShown ? (
-            <span
+            <div
+              className="card_image_icon"
               onClick={handleEditMenuToggle}
               onKeyDown={handleEditMenuToggle}
               role="button"
               tabIndex={0}
             >
-              {/* <EditOutlined color="red" /> */}
-              edit
-            </span>
+              <EditOutlined twoToneColor="#eb2f96" />
+            </div>
           ) : (
             ''
           )}
@@ -104,9 +123,18 @@ const Card: React.FC<Props> = ({ card, handleCardUpdate, id }) => {
           <div className="progress_bar" />
         </div>
         <div className="card_footer">
-          <div>{card.likes}</div>
-          <div>{card.shares}</div>
-          <div>{card.views}</div>
+          <div>
+            <LikeOutlined />
+            <span>{card.likes}</span>
+          </div>
+          <div>
+            <TeamOutlined />
+            <span>{card.shares}</span>
+          </div>
+          <div>
+            <EyeOutlined />
+            <span>{card.views}</span>
+          </div>
         </div>
       </div>
     </div>

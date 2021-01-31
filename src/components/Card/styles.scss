@@ -26,18 +26,13 @@
 .card_image {
   position: relative;
 
-   span {
+   &_icon {
      position: absolute;
      right: 10px;
      top: 10px;
+     background: var(--color-white);
    }
 
-  div {
-    background: var(--color-white);
-    position: absolute;
-    right: 10px;
-    top: 30px;
-  }
 }
 
 img {
@@ -47,9 +42,20 @@ img {
 }
 
 .menu_toggle {
+  position: absolute;
+  right: 10px;
+  top: 30px;
   display: flex;
   flex-direction: column;
   width: 75px;
+
+  span {
+    padding-right: 5px;
+  }
+
+  button {
+    border-bottom: 1px solid var(--color-border);
+  }
 }
 
 .card_content {
@@ -87,6 +93,10 @@ img {
   margin-top: auto;
   padding: 0.8rem;
   border: 1px solid var(--color-border);
+
+  span {
+    padding-left: 1px;
+  }
 }
 
 .btn:hover {

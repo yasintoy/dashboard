@@ -2,11 +2,14 @@ import axios from 'axios';
 
 import { Campaign } from '../actionTypes/campaigns';
 
+import Config from '../config/index';
+
+const { BASE_URL } = Config;
+
 export interface CampaignsResponse {
   campaigns: Campaign[];
 }
 
 export async function fetchCampaigns(): Promise<CampaignsResponse> {
-  // eslint-disable-next-line no-return-await
-  return await axios.get('http://localhost:8080/campaigns');
+  return axios.get(`${BASE_URL}/campaigns`);
 }
