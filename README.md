@@ -1,23 +1,52 @@
-# Getting Started with Create React App
+# Dashboard - Introduction
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application demonstrates the React, TypeScript, Redux and Redux-Saga based dashboard having list of services cards
 
-## Available Scripts
+## Table of Contents
+- [Technologies Used](#Technologies Used)
+- [Installation](#installation)
+- [Getting Started](#getting-started)
+- [Features](#features)
+- [TODO](#todo)
+- [Contributing](#contributing)
+- [License](#license)
 
-In the project directory, you can run:
+# Technologies Used:
 
-### `npm start`
+- React, TypeScript, Redux-Saga, HTML5, SCSS.
+- Plugins/Libraries:
+  - Redux for stores and redux-saga middleware.
+  - Basic RestApi with express.js
+  - TSLint, Prettier for development, verified and indented code.
+  - Jest and react-testing-library for tests
+ 
+- Stack: Create-react-app, Typescript, npm (node modules) etc.
+
+- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
+- Express server was bootstrapped with [Express Generator](https://expressjs.com/en/starter/generator.html).
+
+## Installation 
+
+### Backend: 
+- open a new terminal
+- `cd server/`
+- `npm i` for express server
+- `npm start` start the server
+
+Server is starting the listen [http://localhost:8080](http://localhost:8080)
+
+### Client: 
+- open a new terminal
+- `npm i` 
+- `npm start`
+
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
 ### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![image](screen_shots/tests.png)
 
 ### `npm run build`
 
