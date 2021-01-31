@@ -45,14 +45,14 @@ const Card: React.FC<Props> = ({ card, handleCardUpdate, id }) => {
   };
 
   const renderCardMenu = () => (
-    <div className="menu_toggle">
+    <div onMouseLeave={handleEditMenuToggle} className="menu_toggle">
       <button type="button">
         <EditOutlined />
         <span>Edit</span>
       </button>
       <button type="button">
         <CheckCircleOutlined />
-        <span>Publis</span>
+        <span>Publish</span>
       </button>
       <button type="button">
         <ShareAltOutlined />
@@ -82,7 +82,7 @@ const Card: React.FC<Props> = ({ card, handleCardUpdate, id }) => {
               role="button"
               tabIndex={0}
             >
-              <EditOutlined twoToneColor="#eb2f96" />
+              <EditOutlined />
             </div>
           ) : (
             ''
