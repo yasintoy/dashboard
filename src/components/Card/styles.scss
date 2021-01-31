@@ -46,7 +46,7 @@ img {
   vertical-align: middle;
 }
 
-.menu-toggle {
+.menu_toggle {
   display: flex;
   flex-direction: column;
   width: 75px;
@@ -74,20 +74,19 @@ img {
   justify-content: space-between;
 }
 
-.progress-bar {
+.progress_bar {
   height: 10px;
   background: rgb(224, 224, 224);
   position: relative;
   border-radius: 10px;
 }
 
-.card-footer {
+.card_footer {
   display: flex;
   justify-content: space-between;
   margin-top: auto;
   padding: 0.8rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgb(224, 224, 224);
 }
 
 .btn:hover {
@@ -95,5 +94,5 @@ img {
 }
 
 .status {
-  width: 60px;
+  width: 65px;
 }

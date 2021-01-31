@@ -4,11 +4,11 @@ import { PlusCircleOutlined } from '@ant-design/icons/lib';
 import './styles.scss';
 
 const CreateCard: React.FC = () => (
-  <div className="create-card">
+  <div className="create_card">
     <div>
       <PlusCircleOutlined />
     </div>
-    <div>Create Services Card</div>
+    <div className="create_card_text">Create Services Card</div>
   </div>
 );
 

@@ -7,6 +7,7 @@ import Constants from '../../constants';
 import './styles.scss';
 
 export interface Props {
+  id: string;
   card: ICard;
   handleCardUpdate: (
     cardId: string,
@@ -15,7 +16,7 @@ export interface Props {
   ) => void;
 }
 
-const Card: React.FC<Props> = ({ card, handleCardUpdate }) => {
+const Card: React.FC<Props> = ({ card, handleCardUpdate, id }) => {
   const [isEditIconShown, setIsEditIconShown] = useState(false);
   const [isEditMenuShown, setIsEditMenuShown] = useState(false);
 
@@ -35,7 +36,7 @@ const Card: React.FC<Props> = ({ card, handleCardUpdate }) => {
   };
 
   const renderCardMenu = () => (
-    <div className="menu-toggle">
+    <div className="menu_toggle">
       <button type="button">
         <span>Test</span>
       </button>
@@ -100,9 +101,9 @@ const Card: React.FC<Props> = ({ card, handleCardUpdate }) => {
               />
             </div>
           </div>
-          <div className="progress-bar" />
+          <div className="progress_bar" />
         </div>
-        <div className="card-footer">
+        <div className="card_footer">
           <div>{card.likes}</div>
           <div>{card.shares}</div>
           <div>{card.views}</div>

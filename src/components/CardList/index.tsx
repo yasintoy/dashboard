@@ -31,7 +31,8 @@ const CardList: React.FC<Props> = ({
         {cards.map((card) => (
           <Card
             handleCardUpdate={handleCardUpdate}
-            key={card.cardTitle + card.id}
+            key={card.cardTitle}
+            id={card.cardTitle}
             card={card}
           />
         ))}

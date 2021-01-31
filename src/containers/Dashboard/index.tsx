@@ -110,8 +110,8 @@ const Dashboard: React.FC<Props> = ({
 const mapStateToProps = (state: AppState) => {
   return {
     campaigns: state.campaigns.campaigns,
-    isCampaignLoading: state.isLoading[GET_CAMPAIGNS],
     cards: state.cards.cards,
+    isCampaignLoading: state.isLoading[GET_CAMPAIGNS],
     isCardsLoading: state.isLoading[GET_CARDS],
     isCardUpdateLoading: state.isLoading[UPDATE_CARD],
   };

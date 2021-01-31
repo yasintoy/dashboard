@@ -7,12 +7,16 @@ import { Campaign } from '../../actionTypes/campaigns';
 
 import './styles.scss';
 
+interface ICampaignSelect {
+  value: string;
+  label: string;
+}
+
 export interface Props {
   isMobile: boolean;
   isCampaignLoading: boolean;
   campaigns: Array<Campaign>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  handleCampaignChange: any;
+  handleCampaignChange: (campaign: ICampaignSelect) => void;
 }
 
 const Header: React.FC<Props> = ({
