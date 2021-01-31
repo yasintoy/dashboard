@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
-import EditOutlined from '@ant-design/icons';
 import Select from 'react-select';
 
 import { Card as ICard } from '../../actionTypes/cards';
+import Constants from '../../constants';
 
 import './styles.scss';
-import Constants from '../../constants';
 
 export interface Props {
   card: ICard;
+  handleCardUpdate: (
+    cardId: string,
+    cardTitle: string,
+    newStatus: string
+  ) => void;
 }
 
-const Card: React.FC<Props> = ({ card }) => {
+const Card: React.FC<Props> = ({ card, handleCardUpdate }) => {
   const [isEditIconShown, setIsEditIconShown] = useState(false);
   const [isEditMenuShown, setIsEditMenuShown] = useState(false);
 
@@ -23,9 +27,18 @@ const Card: React.FC<Props> = ({ card }) => {
     setIsEditMenuShown(!isEditMenuShown);
   };
 
+  const handleStatusChange = (event, changedCard) => {
+    // I'd like to create a confirm modal component but dont have enough time :/
+    if (window.confirm('Are you sure you wish to change status this card?')) {
+      handleCardUpdate(event.value, changedCard.cardTitle, event.label);
+    }
+  };
+
   const renderCardMenu = () => (
     <div className="menu-toggle">
-      <button type="button">Test</button>
+      <button type="button">
+        <span>Test</span>
+      </button>
       <button type="button">Test</button>
       <button type="button">Test</button>
       <button type="button">Test</button>
@@ -40,7 +53,7 @@ const Card: React.FC<Props> = ({ card }) => {
     >
       <div className="card">
         <div className="card_image">
-          <img src={card.primaryMediaUrl} />
+          <img src={`${card.primaryMediaUrl}?random=${card.cardTitle}`} />
           {isEditIconShown ? (
             <span
               onClick={handleEditMenuToggle}
@@ -58,7 +71,7 @@ const Card: React.FC<Props> = ({ card }) => {
         </div>
         <div className="card_content">
           <div className="card_title">
-            <h2>{card.cardDescription}</h2>
+            <h2>{card.cardTitle}</h2>
           </div>
           <div className="card_text">
             <div className="budget">
@@ -67,11 +80,15 @@ const Card: React.FC<Props> = ({ card }) => {
             </div>
             <div className="status">
               <Select
+                components={{
+                  DropdownIndicator: () => null,
+                  IndicatorSeparator: () => null,
+                }}
                 defaultValue={{
                   value: card.id,
                   label: card.currentWorkflow,
                 }}
-                onChange={() => {}}
+                onChange={(e) => handleStatusChange(e, card)}
                 options={Constants.WORK_FLOWS[card.currentWorkflow].map(
                   (label) => ({
                     value: card.id,
@@ -85,7 +102,11 @@ const Card: React.FC<Props> = ({ card }) => {
           </div>
           <div className="progress-bar" />
         </div>
-        <div className="card-footer">Footer</div>
+        <div className="card-footer">
+          <div>{card.likes}</div>
+          <div>{card.shares}</div>
+          <div>{card.views}</div>
+        </div>
       </div>
     </div>
   );

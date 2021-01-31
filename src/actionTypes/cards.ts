@@ -6,12 +6,9 @@ export interface Card {
   primaryMediaUrl: string;
   currentWorkflow: string;
   listOfPlans: object;
-}
-
-export const SET_CARDS = 'cardsActionTypes/SET_CARDS';
-export interface SetCardsAction {
-  type: typeof SET_CARDS;
-  cards: Card[];
+  likes: number;
+  shares: number;
+  views: number;
 }
 
 export const GET_CARDS = 'cardsActionTypes/GET_CARDS';
@@ -37,9 +34,37 @@ export interface GetCardsFailureAction {
   error: Error | string;
 }
 
+export const UPDATE_CARD = 'cardsActionTypes/UPDATE_CARD';
+export interface UpdateCardAction {
+  type: typeof UPDATE_CARD;
+  cardId: string;
+  cardTitle: string;
+  newStatus: string;
+}
+
+export const UPDATE_CARD_REQUEST = 'cardsActionTypes/UPDATE_CARD_REQUEST';
+export interface UpdateCardRequestAction {
+  type: typeof UPDATE_CARD_REQUEST;
+}
+
+export const UPDATE_CARD_SUCCESS = 'cardsActionTypes/UPDATE_CARD_SUCCESS';
+export interface UpdateCardsSuccessAction {
+  type: typeof UPDATE_CARD_SUCCESS;
+  cards: Card[];
+}
+
+export const UPDATE_CARD_FAILURE = 'cardsActionTypes/UPDATE_CARD_FAILURE';
+export interface UpdateCardsFailureAction {
+  type: typeof UPDATE_CARD_FAILURE;
+  error: Error | string;
+}
+
 export type CardsAction =
-  | SetCardsAction
   | GetCardsAction
   | GetCardsRequestAction
   | GetCardsSuccessAction
-  | GetCardsFailureAction;
+  | GetCardsFailureAction
+  | UpdateCardAction
+  | UpdateCardRequestAction
+  | UpdateCardsSuccessAction
+  | UpdateCardsFailureAction;

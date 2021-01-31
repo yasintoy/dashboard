@@ -54,11 +54,9 @@ img {
 
 .card_content {
   padding: 1rem;
-  background: linear-gradient(to bottom left, #EF8D9C 40%, #FFC39E 100%);
 }
 
 .card_title {
-  color: var(--color-white);
   font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 1px;
@@ -67,7 +65,6 @@ img {
 }
 
 .card_text {
-  color: var(--color-white);
   font-size: 0.875rem;
   line-height: 1.5;
   margin-bottom: 1.25rem;
@@ -79,24 +76,24 @@ img {
 
 .progress-bar {
   height: 10px;
-  background: #F66;
+  background: rgb(224, 224, 224);
   position: relative;
   border-radius: 10px;
 }
 
 .card-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
   padding: 0.8rem;
-  font-size: 14px;
-  text-transform: uppercase;
-  border-radius: 4px;
-  font-weight: 400;
-  display: block;
-  width: 100%;
-  cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  background: var(--color-gray);;
+  background: rgb(224, 224, 224);
 }
 
 .btn:hover {
   background-color: rgba(255, 255, 255, 0.12);
+}
+
+.status {
+  width: 60px;
 }

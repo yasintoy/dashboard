@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
+import DarkModeToggle from 'react-dark-mode-toggle';
+import { LoadingOutlined } from '@ant-design/icons';
 
 import { getCampaigns } from '../../actionCreators/campaigns';
-import { getCards } from '../../actionCreators/cards';
-import { Campaign } from '../../actionTypes/campaigns';
-import { Card } from '../../actionTypes/cards';
+import { getCards, updateCard } from '../../actionCreators/cards';
+import { Campaign, GET_CAMPAIGNS } from '../../actionTypes/campaigns';
+import { Card, GET_CARDS, UPDATE_CARD } from '../../actionTypes/cards';
 import Header from '../../components/Header';
 import CardList from '../../components/CardList';
+import Loading from '../../components/Loading';
 import Constants from '../../constants';
 import { AppState } from '../../reducers/rootReducer';
 
@@ -15,17 +18,35 @@ import './styles.scss';
 interface Props {
   campaigns: Campaign[];
   cards: Card[];
+  isCampaignLoading: boolean;
+  isCardUpdateLoading: boolean;
+  isCardsLoading: boolean;
 }
 
-const Dashboard: React.FC<Props> = ({ campaigns, cards }) => {
-  const [themeState, setThemeState] = useState<string>('light');
+interface ICampaignSelect {
+  value: string;
+  label: string;
+}
+
+const Dashboard: React.FC<Props> = ({
+  campaigns,
+  cards,
+  isCampaignLoading,
+  isCardsLoading,
+  isCardUpdateLoading,
+}) => {
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [width, setWidth] = useState<number>(window.innerWidth);
   const dispatch = useDispatch();
   const isMobile: boolean = width <= 768;
 
-  function handleWindowSizeChange() {
+  const handleWindowSizeChange = () => {
     setWidth(window.innerWidth);
-  }
+  };
+
+  const handleCampaignChange = (selectedCampaign: ICampaignSelect) => {
+    dispatch(getCards(selectedCampaign.value));
+  };
 
   useEffect(() => {
     dispatch(getCampaigns());
@@ -37,15 +58,19 @@ const Dashboard: React.FC<Props> = ({ campaigns, cards }) => {
   }, []);
 
   const handleThemeChange = () => {
-    if (themeState === 'light') {
+    setIsDarkMode(!isDarkMode);
+
+    if (!isDarkMode) {
       localStorage.setItem('Theme', Constants.DARK_MODE);
-      setThemeState('dark');
       document.body.classList.add('dark-mode');
     } else {
       localStorage.setItem('Theme', Constants.LIGHT_MODE);
-      setThemeState('light');
       document.body.classList.remove('dark-mode');
     }
+  };
+
+  const handleCardUpdate = (cardId, cardTitle, newStatus) => {
+    dispatch(updateCard(cardId, cardTitle, newStatus));
   };
 
   useEffect(() => {
@@ -56,8 +81,28 @@ const Dashboard: React.FC<Props> = ({ campaigns, cards }) => {
 
   return (
     <div className="container">
-      <Header campaigns={campaigns} isMobile={isMobile} />
-      <CardList cards={cards} />
+      <div className="dark-mode-toggle">
+        <DarkModeToggle
+          onChange={handleThemeChange}
+          checked={isDarkMode}
+          size={80}
+        />
+      </div>
+      <Header
+        handleCampaignChange={handleCampaignChange}
+        isCampaignLoading={isCampaignLoading}
+        campaigns={campaigns}
+        isMobile={isMobile}
+      />
+      {isCardsLoading ? (
+        <Loading />
+      ) : (
+        <CardList
+          handleCardUpdate={handleCardUpdate}
+          isCardUpdateLoading={isCardUpdateLoading}
+          cards={cards}
+        />
+      )}
     </div>
   );
 };
@@ -65,7 +110,10 @@ const Dashboard: React.FC<Props> = ({ campaigns, cards }) => {
 const mapStateToProps = (state: AppState) => {
   return {
     campaigns: state.campaigns.campaigns,
+    isCampaignLoading: state.isLoading[GET_CAMPAIGNS],
     cards: state.cards.cards,
+    isCardsLoading: state.isLoading[GET_CARDS],
+    isCardUpdateLoading: state.isLoading[UPDATE_CARD],
   };
 };
 

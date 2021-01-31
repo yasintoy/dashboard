@@ -27,7 +27,7 @@ const updateCard = (cardId, cardTitle, newStatus) => {
   })
 };
 
-router.post('/:cardId',function(req, res, next){
+router.put('/:cardId',function(req, res, next){
   res.setHeader('Content-Type', 'application/json');
   const { cardTitle, newStatus} = req.body;
   const { cardId } = req.params;

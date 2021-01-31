@@ -1,5 +1,9 @@
-import { Card, CardsAction, GET_CARDS_SUCCESS, SET_CARDS } from '../actionTypes/cards';
-
+import {
+  Card,
+  CardsAction,
+  GET_CARDS_SUCCESS,
+  UPDATE_CARD_SUCCESS,
+} from '../actionTypes/cards';
 
 export interface CardsState {
   cards: Card[];
@@ -14,7 +18,7 @@ export default function cardsReducer(
   action: CardsAction
 ): CardsState {
   switch (action.type) {
-    case SET_CARDS:
+    case UPDATE_CARD_SUCCESS:
     case GET_CARDS_SUCCESS:
       return {
         cards: action.cards,

@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {
-  BarsOutlined,
-  SearchOutlined,
-  LeftOutlined,
-  RightOutlined,
-} from '@ant-design/icons';
+import { BarsOutlined, SearchOutlined } from '@ant-design/icons';
+
 import Select from 'react-select';
 
 import { Campaign } from '../../actionTypes/campaigns';
@@ -13,21 +9,35 @@ import './styles.scss';
 
 export interface Props {
   isMobile: boolean;
+  isCampaignLoading: boolean;
   campaigns: Array<Campaign>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  handleCampaignChange: any;
 }
 
-const Header: React.FC<Props> = ({ isMobile, campaigns }) => {
+const Header: React.FC<Props> = ({
+  isMobile,
+  campaigns,
+  handleCampaignChange,
+  isCampaignLoading,
+}) => {
   const [selectedCampaign, setSelectedCampaign] = useState<object>({
-    value: null,
+    value: '',
     label: 'All Campaigns',
   });
+
+  const handleCampaign = (campaign) => {
+    setSelectedCampaign(campaign);
+    handleCampaignChange(campaign);
+  };
 
   return (
     <nav className="nav">
       <div className="nav-campaigns-select">
         <Select
+          isLoading={isCampaignLoading}
           defaultValue={selectedCampaign}
-          onChange={setSelectedCampaign}
+          onChange={handleCampaign}
           options={campaigns.map((campaign) => ({
             value: campaign.id,
             label: campaign.campaignName,

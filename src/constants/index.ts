@@ -15,6 +15,9 @@ const Constants = {
     pending: ['active', 'declined'],
     active: ['paused', 'terminated', 'expired'],
     paused: ['active'],
+    expired: [],
+    declined: [],
+    terminated: [],
   },
 };
 
