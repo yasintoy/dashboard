@@ -1,4 +1,4 @@
-# Dashboard - Introduction
+## Dashboard - Introduction
 
 This application demonstrates the React, TypeScript, Redux and Redux-Saga based dashboard having list of services cards
 
@@ -8,8 +8,6 @@ This application demonstrates the React, TypeScript, Redux and Redux-Saga based 
 - [Getting Started](#getting-started)
 - [Features](#features)
 - [TODO](#todo)
-- [Contributing](#contributing)
-- [License](#license)
 
 # Technologies Used:
 
@@ -19,8 +17,12 @@ This application demonstrates the React, TypeScript, Redux and Redux-Saga based 
   - Basic RestApi with express.js
   - TSLint, Prettier for development, verified and indented code.
   - Jest and react-testing-library for tests
+  - Axios for api calls
  
 - Stack: Create-react-app, Typescript, npm (node modules) etc.
+- Engines
+    - node: v14.15.4
+    - npm : 6.14.10
 
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). 
 - Express server was bootstrapped with [Express Generator](https://expressjs.com/en/starter/generator.html).
@@ -46,30 +48,37 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
 ### `npm test`
-![image](screen_shots/tests.png)
+- If I had a more time, I could be able to write more tests
+![image](screen-shots/tests.png)
 
-### `npm run build`
+# Folder Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![image](screen-shots/folder-structure.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- compoments:
+    -  This is the folder that stores generic UI components
+- actionCreators and actionTypes:
+    - I've splitted types and creators into different files 
+- config/ :
+    - There's only one file and it stores `BASE_URL`(for api request).
+     In the real project, I'd like to create base.ts, dev.ts, staging.ts, prod.ts to store config files 
+- container/ :
+    - Dashboard container for managing api requests, using components etc.
+    
+- reducers/ :
+    - rootReducer.ts is for combine all reducers. In this project, I've tried different way to managing error
+     and loading states in shared states <br>
+     ![image](screen-shots/redux.png)
+     Instead of writing isLoading and isError into both campaigns and cards state,
+     I've created a generics file errorReducer.ts and isLoadingReducer.ts <br>
+     It gives you check state by using action type
+     `isCampaignLoading: state.isLoading[GET_CAMPAIGNS]`
+- sagas/ : 
+    - redux-saga files for middleware
+- services/ : 
+    - axios instances
+ - store/: 
+    - share state with Redux
+ - styles/:
+    - global styles.scss(dark-mode etc.) and variable.scss (colors etc.)
+    
