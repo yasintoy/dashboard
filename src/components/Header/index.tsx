@@ -37,7 +37,7 @@ const Header: React.FC<Props> = ({
 
   return (
     <nav className="nav">
-      <div className="nav-campaigns-select">
+      <div className="nav_campaigns_select">
         <Select
           isLoading={isCampaignLoading}
           defaultValue={selectedCampaign}
@@ -48,7 +48,7 @@ const Header: React.FC<Props> = ({
           }))}
           menuPlacement="auto"
           menuPosition="fixed"
-          className="campaigns-select"
+          className="campaigns_select"
         />
 
         <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -57,20 +57,18 @@ const Header: React.FC<Props> = ({
         </div>
       </div>
       {!isMobile ? (
-        <ul className="nav-links">
+        <ul className="nav_links">
           <li className="nav-item">
             <SearchOutlined style={{ fontSize: '24px' }} />
           </li>
-          <li className="nav-item">
+          <li className="nav_item">
             <a href="#">Today, Jun 16th</a>
           </li>
-          <li className="nav-item">
+          <li className="nav_item">
             <a href="#">1d</a>
           </li>
         </ul>
-      ) : (
-        ''
-      )}
+      ) : null}
     </nav>
   );
 };

@@ -2,7 +2,6 @@ import { put, call, takeEvery, all, fork } from 'redux-saga/effects';
 
 import * as actionCreators from '../actionCreators/campaigns';
 import * as actionTypes from '../actionTypes/campaigns';
-import { Campaign } from '../actionTypes/campaigns';
 import { fetchCampaigns } from '../services/campaignsServices';
 
 function* onLoadCampaigns() {

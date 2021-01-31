@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { Campaign } from '../actionTypes/campaigns';
 
-interface CampaignsResponse {
+export interface CampaignsResponse {
   campaigns: Campaign[];
 }
 

@@ -7,12 +7,11 @@ nav {
   border-bottom: 1px solid var(--color-border);
 }
 
-.campaigns-select {
+.campaigns_select {
   width: 200px;
-  background-color: #001F3F;
 }
 
-.nav-campaigns-select {
+.nav_campaigns_select {
   display: flex;
   padding-left: 1%;
   align-items: center;
@@ -22,12 +21,12 @@ nav {
   }
 }
 
-.nav-links {
+.nav_links {
   display: flex;
   list-style: none;
 }
 
-.nav-item a {
+.nav_item a {
   display: inline-block;
   padding: 10px 15px;
 }
